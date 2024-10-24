@@ -31,7 +31,7 @@ map.on("click", ()=>{
 });
 */
 
-d3.tsv("bans-dots.tsv?ynocache").then(f => {
+d3.tsv("bans-dots.tsv").then(f => {
   var layersData=[]
   f.forEach(f=> {
     var c=L.circle([f.lat,f.lng], 
@@ -78,6 +78,8 @@ map.on("click",a=>{
   if (issues.length) {
     var content = "<h3>Забранено за пиротехника, защото:</h3><ul>"+issues.map(i=>"<li>"+i+"</li>").join("")+"</ul>";
     L.popup(a.latlng,{"content":content}).openOn(map);
+  } else {
+    map.closePopup();
   }
 });
 
